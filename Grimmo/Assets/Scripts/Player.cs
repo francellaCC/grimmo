@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     private Rigidbody2D Rigidbody2D;   
     private bool Grounded;
     public float walkSpeed = 3f;
+
+    //rebote
+    public Vector2 velocidadRebote;
     public float JumpForce;
     // private SkeletonAnimation skeletonAnimation;
     // private string previousState, currentState;
@@ -85,5 +88,10 @@ public class Player : MonoBehaviour
         Rigidbody2D.velocity = new Vector2(xAxis * walkSpeed, Rigidbody2D.velocity.y);
     }
 
+//cuando el jugador es tocado por el enemigo, el jugador
+//rebota a la dirrecion contraria
+    public void Rebote(Vector2 puntoGolpe){
+       Rigidbody2D.velocity= new Vector2(-velocidadRebote.x* puntoGolpe.x,velocidadRebote.y);
+    }
 
 }
