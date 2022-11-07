@@ -5,6 +5,8 @@ using UnityEngine;
 public class Camera : MonoBehaviour
 {
     public GameObject player;
+    public Transform bottomEdge;
+
   
     // Update is called once per frame
     void Update()
@@ -14,7 +16,7 @@ public class Camera : MonoBehaviour
             Debug.LogError("No Player");
         }
         Vector3 position = transform.position;
-        position.x = player.transform.position.x;
+        // position.x = player.transform.position.x;
         position.y = player.transform.position.y;
         transform.position = position;
     }
