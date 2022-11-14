@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public Vector2 velocidadRebote;
 
     public int life = 2;
+    public GameObject livesPanel;
     public GameObject bulletPrefab;
     private float lastShoot;
     public Vector2 respawnpoint;
@@ -153,11 +154,10 @@ public class Player : MonoBehaviour
         if (life <= 0)
         {
             life = 2;
-            //Todavia no tenemos el panel
-            // for (int i = 0; i < lifesPanel.transform.childCount; i++)
-            // {
-            //     lifesPanel.transform.GetChild(i).gameObject.SetActive(true);
-            // }
+            for (int i = 0; i < livesPanel.transform.childCount; i++)
+            {
+                livesPanel.transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
     }
 
@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
         StartCoroutine(cooldown());
         if (life > 0)
         {
-            //lifesPanel.transform.GetChild(life).gameObject.SetActive(false);
+            livesPanel.transform.GetChild(life).gameObject.SetActive(false);
             life -= 1;
             if(enemy)
             {
