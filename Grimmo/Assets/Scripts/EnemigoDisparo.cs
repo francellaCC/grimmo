@@ -23,7 +23,7 @@ public class EnemigoDisparo : MonoBehaviour
     {
         float distance = Mathf.Abs(Player.transform.position.x - transform.position.x);
 
-        if (distance < 3.0f && Time.time > LastShoot + 0.25f)
+        if (distance < 3.0f && Time.time > LastShoot + 0.50f)
         {
             ShootEnemy();
             LastShoot = Time.time;
@@ -39,14 +39,14 @@ public class EnemigoDisparo : MonoBehaviour
         }
     }
 
-    // protected void OnTriggerEnter2D(Collider2D collider)
-    // {
-    //     Player player = collider.GetComponent<Player>();
-    //     if (player != null)
-    //     {
-    //         // player.Hit(knockback, gameObject);
-    //     }
-    // }
+    protected void OnTriggerEnter2D(Collider2D collider)
+    {
+        Player player = collider.GetComponent<Player>();
+        if (player != null)
+        {
+            player.Hit(knockback, gameObject);
+        }
+    }
 
     private void ShootEnemy()
     {

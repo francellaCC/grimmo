@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
         Player player = collider.GetComponent<Player>();
         if (player != null)
         {
-            // player.Hit(knockback, gameObject);
+            player.Hit(knockback, gameObject);
         }
     }
 }

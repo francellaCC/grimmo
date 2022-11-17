@@ -41,19 +41,19 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    // private void OnCollisionEnter2D(Collision2D collision) {
-    //     Player player = collision.collider.GetComponent<Player>();
-    //     EnemigoDisparo  enemigo = collision.collider.GetComponent<EnemigoDisparo>();
-    //     if (player != null)
-    //     {
-    //         // player.Hit2();
-    //     }
-    //     if (enemigo != null)
-    //     {
-    //         enemigo.Hit();
-    //     }
-    //     DestroyBullet();
-    // }
+    private void OnCollisionEnter2D(Collision2D collision) {
+        Player player = collision.collider.GetComponent<Player>();
+        EnemigoDisparo  enemigo = collision.collider.GetComponent<EnemigoDisparo>();
+        if (player != null)
+        {
+            player.Hit2();
+        }
+        if (enemigo != null)
+        {
+            enemigo.Hit();
+        }
+        DestroyBullet();
+    }
 
     IEnumerator BulletTime(){
         yield return new WaitForSeconds(bulletTime);

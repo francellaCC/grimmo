@@ -8,8 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D Rigidbody2D;   
+    private Rigidbody2D Rigidbody2D;
     private bool Grounded;
+    private GameObject destinyWarp;
+    private Animator animator;
     public float walkSpeed = 4f;
     public float JumpForce;
     public Vector2 velocidadRebote;
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
     {
         // skeletonAnimation = GetComponent<SkeletonAnimation>();
         Rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         initialPosition = transform.position;
         respawnpoint = initialPosition;
 
@@ -45,39 +48,42 @@ public class Player : MonoBehaviour
         //Eje X
         xAxis = Input.GetAxis("Horizontal");
 
-         if(xAxis < 0.0f) //Si va a la izquierda
+        if (xAxis < 0.0f) //Si va a la izquierda
         {
             transform.localScale = new Vector3(-0.15f, 0.14f, 0.15f); //Se pone el eje "y" en negativo y se gira el personaje
         }
-        else if(xAxis > 0.0f) //Si va a la derecha
+        else if (xAxis > 0.0f) //Si va a la derecha
         {
             transform.localScale = new Vector3(0.15f, 0.14f, 0.15f);
         }
+        animator.SetBool("isRunning", xAxis != 0.0f);
 
         // currentState = xAxis == 0 ? "Idle" : "Run"; //Si el hAxis es 0, el estado es Idle, si no, es Run
         //Eje X
 
         //------Eje Y------
         yAxis = Input.GetAxis("Vertical");
-        
-        if(Physics2D.Raycast(transform.position, Vector3.down, 0.1f))
+
+        if (Physics2D.Raycast(transform.position, Vector3.down, 0.1f))
         {
             Grounded = true;
         }
-        else{
+        else
+        {
             // currentState = "jump_static"; 
             Grounded = false;
-            }
+        }
 
-        if((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && Grounded)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && Grounded)
         {
             Rigidbody2D.AddForce(Vector2.up * JumpForce); //El .up signofica que el eje "x=0" y "y=1"
         }
 
-        if(climbingAllowed){
+        if (climbingAllowed)
+        {
             yAxis *= walkSpeed;
         }
-        
+
         //-----Eje Y------
 
 
@@ -96,24 +102,28 @@ public class Player : MonoBehaviour
             lastShoot = Time.time;
         }
 
-        // if(Input.GetKeyDown(KeyCode.S) && destinyWarp){
-        //     transform.position = destinyWarp.transform.position;
-        // }
+        if (Input.GetKeyDown(KeyCode.S) && destinyWarp)
+        {
+            transform.position = destinyWarp.transform.position;
+        }
 
         DeathOnFall();
 
     }
-        
+
 
     private void FixedUpdate()  //FixedUpdate se usa siempre que trabajemos con fisicas ya que se tienen que actualizar con mucha frecuencia
     {
         //velocity espera un vector2 = dos elementos indican la "x" y "y" del mundo
         Rigidbody2D.velocity = new Vector2(xAxis * walkSpeed, Rigidbody2D.velocity.y);
 
-        if(climbingAllowed){
+        if (climbingAllowed)
+        {
             Rigidbody2D.isKinematic = true;
             Rigidbody2D.velocity = new Vector2(xAxis, yAxis);
-        }else{
+        }
+        else
+        {
             Rigidbody2D.isKinematic = false;
             Rigidbody2D.velocity = new Vector2(xAxis * walkSpeed, Rigidbody2D.velocity.y);
         }
@@ -123,20 +133,38 @@ public class Player : MonoBehaviour
         // }
     }
 
-    private void OnTriggerEnter2D(Collider2D collider) 
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.CompareTag("Ladder")){
+        if (collider.CompareTag("Ladder"))
+        {
             climbingAllowed = true;
+        }
+        if (collider.name == "PointA" || collider.name == "PointB")
+        {
+            GameObject warp = collider.transform.parent.gameObject;
+            if (collider.name == "PointA")
+            {
+                destinyWarp = warp.transform.Find("PointB").gameObject;
+            }
+            else
+            {
+                destinyWarp = warp.transform.Find("PointA").gameObject;
+            }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collider) 
+    private void OnTriggerExit2D(Collider2D collider)
     {
         //Al salir de cualquier collider
         walkSpeed = 4f;
 
-        if(collider.CompareTag("Ladder")){
+        if (collider.CompareTag("Ladder"))
+        {
             climbingAllowed = false;
+        }
+        if (collider.name == "PointA" || collider.name == "PointB")
+        {
+            destinyWarp = null;
         }
     }
 
@@ -144,7 +172,7 @@ public class Player : MonoBehaviour
     //rebota a la dirrecion contraria
     public void Rebote(Vector2 puntoGolpe)
     {
-       Rigidbody2D.velocity= new Vector2(-velocidadRebote.x * puntoGolpe.x,velocidadRebote.y);
+        Rigidbody2D.velocity = new Vector2(-velocidadRebote.x * puntoGolpe.x, velocidadRebote.y);
     }
 
     public void Death()
@@ -163,24 +191,25 @@ public class Player : MonoBehaviour
 
     public void Hit(float knockback, GameObject enemy)
     {
-        if(!isInCooldown){
-        StartCoroutine(cooldown());
-        if (life > 0)
+        if (!isInCooldown)
         {
-            livesPanel.transform.GetChild(life).gameObject.SetActive(false);
-            life -= 1;
-            if(enemy)
+            StartCoroutine(cooldown());
+            if (life >= 0)
             {
-                Vector2 difference = (transform.position - enemy.transform.position);
-                float knockbackDirection = difference.x >= 0? 1 : -1; //Esto es como un if. Si es > - me tira 1 o sino -1
-                Rigidbody2D.velocity = new Vector2(knockbackDirection * knockback, knockback/2);
-            }
+                livesPanel.transform.GetChild(life).gameObject.SetActive(false);
+                life -= 1;
+                if (enemy)
+                {
+                    Vector2 difference = (transform.position - enemy.transform.position);
+                    float knockbackDirection = difference.x >= 0 ? 1 : -1; //Esto es como un if. Si es > - me tira 1 o sino -1
+                    Rigidbody2D.velocity = new Vector2(knockbackDirection * knockback, knockback / 2);
+                }
 
-        }
-        else
-        {
-            Death();
-        }
+            }
+            else
+            {
+                Death();
+            }
         }
     }
 
@@ -212,6 +241,19 @@ public class Player : MonoBehaviour
             transform.position + direction * 0.8f,
             Quaternion.identity);
         bullet.GetComponent<Bullet>().SetDirection(direction);
+    }
+
+    public void Hit2()
+    {
+        if (life >= 0)
+        {
+            livesPanel.transform.GetChild(life).gameObject.SetActive(false);
+            life -= 1;
+        }
+        else
+        {
+            Death();
+        }
     }
 
 }
