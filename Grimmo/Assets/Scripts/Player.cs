@@ -64,19 +64,10 @@ public class Player : MonoBehaviour
         //------Eje Y------
         yAxis = Input.GetAxis("Vertical");
 
-        if (Physics2D.Raycast(transform.position, Vector3.down, 0.1f))
-        {
-            Grounded = true;
-        }
-        else
-        {
-            // currentState = "jump_static"; 
-            Grounded = false;
-        }
-
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)) && Grounded)
         {
             Rigidbody2D.AddForce(Vector2.up * JumpForce); //El .up signofica que el eje "x=0" y "y=1"
+            animator.SetBool("isJumping", true);
         }
 
         if (climbingAllowed)
@@ -98,6 +89,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && Time.time > lastShoot + 1f)
         {
+            // animator.SetBool("isShooting", true);
+            StartCoroutine(shootingTime());
             Shoot();
             lastShoot = Time.time;
         }
@@ -135,6 +128,12 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+
+        if(collider.name == "Tilemap")
+        {
+            Grounded = true;
+        }
+
         if (collider.CompareTag("Ladder"))
         {
             climbingAllowed = true;
@@ -155,6 +154,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
+
+        if(collider.name == "Tilemap")
+        {
+            Grounded = false;
+            animator.SetBool("isJumping", false);
+        }
+
         //Al salir de cualquier collider
         walkSpeed = 4f;
 
@@ -220,6 +226,13 @@ public class Player : MonoBehaviour
         isInCooldown = false;
     }
 
+    IEnumerator shootingTime()
+    {
+        animator.SetBool("isShooting", true); 
+        yield return new WaitForSeconds(0.3f);
+        animator.SetBool("isShooting", false);
+    }
+
     private void DeathOnFall()
     {
         if (transform.position.y < -10f)
@@ -231,6 +244,7 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
+
         Vector3 direction;
         if (transform.localScale.x > 0)
             direction = Vector3.right;
@@ -241,6 +255,7 @@ public class Player : MonoBehaviour
             transform.position + direction * 0.8f,
             Quaternion.identity);
         bullet.GetComponent<Bullet>().SetDirection(direction);
+        // animator.SetBool("isShooting", false);
     }
 
     public void Hit2()
