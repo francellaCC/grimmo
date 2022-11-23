@@ -112,7 +112,7 @@ TextureImporter:
         width: 1705
         height: 1729
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -133,7 +133,7 @@ TextureImporter:
         width: 1690
         height: 906
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,6 +141,27 @@ TextureImporter:
       bones: []
       spriteID: 48979f22633974e7db14f2b41c1a65a7
       internalID: 1932261306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - BackgroundDecoration_2
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 834
+        width: 919
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94af59ca17ebd43a28cbcd0e02b215ff
+      internalID: 1754228830
       vertices: []
       indices: 
       edges: []
@@ -156,6 +177,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Mossy - BackgroundDecoration_2: 1754228830
       Mossy - BackgroundDecoration_1: 1932261306
       Mossy - BackgroundDecoration_0: -586868073
   spritePackingTag: 
