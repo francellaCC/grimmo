@@ -112,7 +112,7 @@ TextureImporter:
         width: 452
         height: 1373
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -120,6 +120,27 @@ TextureImporter:
       bones: []
       spriteID: a22b6dd72f8134232884e6abba18aeed
       internalID: 1703418177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - Hanging Plants_1
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 69
+        width: 756
+        height: 529
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a1188ee629a249d18a4997a7b8f3566
+      internalID: -491736091
       vertices: []
       indices: 
       edges: []
@@ -135,6 +156,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Mossy - Hanging Plants_1: -491736091
       Mossy - Hanging Plants_0: 1703418177
   spritePackingTag: 
   pSDRemoveMatte: 0

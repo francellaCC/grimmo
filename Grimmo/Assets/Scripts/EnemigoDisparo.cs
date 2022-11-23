@@ -11,6 +11,7 @@ public class EnemigoDisparo : MonoBehaviour
     public GameObject Player;
     private float LastShoot;
     public GameObject BulletPrefab;
+    public float shootTime = 0.50f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class EnemigoDisparo : MonoBehaviour
     {
         float distance = Mathf.Abs(Player.transform.position.x - transform.position.x);
 
-        if (distance < 3.0f && Time.time > LastShoot + 0.50f)
+        if (distance < 3.0f && Time.time > LastShoot + shootTime)
         {
             ShootEnemy();
             LastShoot = Time.time;
