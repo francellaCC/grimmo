@@ -238,7 +238,7 @@ TextureImporter:
         width: 47
         height: 47
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -246,6 +246,69 @@ TextureImporter:
       bones: []
       spriteID: ee97b09c5e4b21043a567f03d4f0613c
       internalID: 132714921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - Decorations&Hazards_1
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 1179
+        width: 443
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88a4eb0c8e9f2498fab20f5c8c6ca2d1
+      internalID: 405213099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - Decorations&Hazards_2
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 58
+        width: 108
+        height: 448
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9c079c0819aa467c9c8c82dd84a6825
+      internalID: -88583989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - Decorations&Hazards_3
+      rect:
+        serializedVersion: 2
+        x: 1591
+        y: 581
+        width: 411
+        height: 440
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6bf754c0c7214d70a8a6418fceb9a01
+      internalID: -705186019
       vertices: []
       indices: 
       edges: []
@@ -263,11 +326,14 @@ TextureImporter:
     nameFileIdTable:
       Rock2: 1169062225
       Rock3: -1600339234
+      Mossy - Decorations&Hazards_3: -705186019
       Plant1: -140524280
       Mossy - Decorations&Hazards_0: -1322067466
       Bullet: 132714921
       Liana: 484638952
+      Mossy - Decorations&Hazards_1: 405213099
       Rock1: -32113027
+      Mossy - Decorations&Hazards_2: -88583989
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
