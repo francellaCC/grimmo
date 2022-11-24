@@ -184,6 +184,7 @@ public class Player : MonoBehaviour
     public void Death()
     {
         transform.position = initialPosition;
+        // Rigidbody2D.velocity = new Vector2(0, 0);
         respawnpoint = initialPosition;
         if (life <= 0)
         {
@@ -237,6 +238,7 @@ public class Player : MonoBehaviour
     {
         if (transform.position.y < -10f)
         {
+            Rigidbody2D.velocity = new Vector2(0, 0);
             transform.position = respawnpoint;
             Hit(0, null);
         }
