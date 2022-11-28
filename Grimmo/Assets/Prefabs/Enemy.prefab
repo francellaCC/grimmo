@@ -136,12 +136,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1597641452, guid: ddcc09922aac641478709e8c101e28d3, type: 3}
+  m_Sprite: {fileID: 1456201752, guid: 06d8eedf75610a0479f5563e721ca7b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 0.70857143, y: 1.3315915}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -205,8 +205,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8, y: 0.8}
-    newSize: {x: 0.8, y: 0.8}
+    oldSize: {x: 0.70857143, y: 1.3315915}
+    newSize: {x: 0.70857143, y: 1.3315915}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -250,6 +250,7 @@ MonoBehaviour:
   distancia: 0
   Player: {fileID: 0}
   BulletPrefab: {fileID: 9075481908269921713, guid: 3773737f881d40d44a935c824674f1f8, type: 3}
+  shootTime: 0.5
 --- !u!1 &3940732391813668548
 GameObject:
   m_ObjectHideFlags: 0

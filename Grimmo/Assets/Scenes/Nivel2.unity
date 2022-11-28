@@ -705,10 +705,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f26720eeee9e4820b738f312b3e140f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 0
-  winSpot: {fileID: 0}
+  level: 2
+  winSpot: {fileID: 647966327}
   player: {fileID: 2022917826}
-  checkPoints: []
   isFinal: 0
 --- !u!4 &398287767
 Transform:
@@ -2817,6 +2816,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49f4ebcc7cd44a844bd8afcda0c17f1d, type: 3}
+--- !u!1 &647966327 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2358309672575371802, guid: 49f4ebcc7cd44a844bd8afcda0c17f1d, type: 3}
+  m_PrefabInstance: {fileID: 647966326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &676892669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6294441037087012997, guid: 8a229f77e19ed614fbfe532ac74769c8, type: 3}
@@ -2953,7 +2957,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: fea05bb0b14c44249a0943e4e2217e3b, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5294118}
+  m_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0.5294118}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
